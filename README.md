@@ -74,7 +74,19 @@ create-reat-app
 Tailwind configured
 git setup and push
 header
+routing
 login form
+signup form
+fomr validation
+use ref hook
+firebase setup
+deploying production
+create signup user account
+implement signin api
+create redux store with user slice
+implemented signout
+update profile
+Ftech from TMDB movies
 
 Features
 
