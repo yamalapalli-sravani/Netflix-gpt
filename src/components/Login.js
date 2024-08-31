@@ -10,6 +10,7 @@ import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../redux/UserSlice";
+import { AVATAR_LOGO, LOGIN_BG_IMAGE } from "../utils/constants";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -36,7 +37,7 @@ const Login = () => {
         .then((userCredential) => {
           updateProfile(auth.currentUser, {
             displayName: fullname.current.value,
-            photoURL: "https://avatars.githubusercontent.com/u/12824231?v=4",
+            photoURL: AVATAR_LOGO,
           })
             .then(() => {
               const { uid, email, displayName, photoURL } = auth.currentUser;
@@ -48,7 +49,6 @@ const Login = () => {
                   photoURL,
                 })
               );
-              navigate("/browse");
             })
             .catch((error) => {
               const errorCode = error.code;
@@ -66,10 +66,7 @@ const Login = () => {
     } else {
       //signin logic
       signInWithEmailAndPassword(auth, emailVal, passwordVal)
-        .then((userCredential) => {
-          const user = userCredential.user;
-          navigate("/browse");
-        })
+        .then((userCredential) => {})
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
@@ -81,11 +78,7 @@ const Login = () => {
     <div>
       <Header />
       <div>
-        <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/36a4db5b-dec2-458a-a1c0-662fa60e7473/1115a02b-3062-4dcc-aae0-94028a0dcdff/IN-en-20240820-TRIFECTA-perspective_WEB_eeff8a6e-0384-4791-a703-31368aeac39f_large.jpg"
-          alt="login-bg"
-          className="absolute"
-        />
+        <img src={LOGIN_BG_IMAGE} alt="login-bg" className="absolute" />
       </div>
       <form className="w-3/12 p-8 bg-black absolute my-32 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-85">
         <h1 className="font-bold text-3xl py-4">
